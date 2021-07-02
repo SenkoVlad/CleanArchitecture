@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using FluentValidation;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
@@ -10,6 +8,7 @@ using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application;
 using CleanArchitecture.Persistence;
 using Microsoft.Extensions.Configuration;
+using CleanArchitecture.WebApi.Middleware;
 
 namespace CleanArchitecture.WebApi
 {
@@ -46,6 +45,8 @@ namespace CleanArchitecture.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCustomExceptionHandler();
+
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");

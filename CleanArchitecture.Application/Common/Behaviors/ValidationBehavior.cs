@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Application.Common.Behaviors
 {
     public class ValidationBehavior<TRequest, TResponse> 
-        : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TRequest>
+        : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
         public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators) =>
@@ -22,9 +22,9 @@ namespace CleanArchitecture.Application.Common.Behaviors
                 .SelectMany(result => result.Errors)
                 .Where(failure => failure != null)
                 .ToList();
+            
             if (failures.Count != 0)
                 throw new ValidationException(failures);
-
             return next();
         }
     }

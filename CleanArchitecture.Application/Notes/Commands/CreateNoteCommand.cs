@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Domain;
+using FluentValidation;
 using MediatR;
 using System;
 using System.Threading;
@@ -34,6 +35,15 @@ namespace CleanArchitecture.Application.Notes.Commands
             await _notesDbContext.Notes.AddAsync(note, cancellationToken);
             await _notesDbContext.SaveChangesAsync(cancellationToken);
             return note.Id;
+        }
+    }
+
+    public class CreateNoteCommandValidator : AbstractValidator<CreateNoteCommand>
+    {
+        public CreateNoteCommandValidator()
+        {
+            RuleFor(createNote => createNote.Title).NotEmpty().MaximumLength(250);
+            RuleFor(createNote => createNote.UserId).NotEqual(Guid.Empty);
         }
     }
 }

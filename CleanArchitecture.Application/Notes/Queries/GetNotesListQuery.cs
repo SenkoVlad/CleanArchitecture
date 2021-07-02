@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.ViewModels;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,6 +37,14 @@ namespace CleanArchitecture.Application.Notes.Queries
             {
                 Notes = notesQuery
             };
+        }
+    }
+
+    public class GetNotesListQueryyValidator : AbstractValidator<GetNotesListQuery>
+    {
+        public GetNotesListQueryyValidator()
+        {
+            RuleFor(note => note.UserId).NotEqual(Guid.Empty);
         }
     }
 }

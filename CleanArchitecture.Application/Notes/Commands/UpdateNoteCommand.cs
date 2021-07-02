@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Domain;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,6 +36,16 @@ namespace CleanArchitecture.Application.Notes.Commands
             await _notesDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
+        }
+    }
+
+    public class UpdateNoteCommandValidator : AbstractValidator<UpdateNoteCommand>
+    {
+        public UpdateNoteCommandValidator()
+        {
+            RuleFor(updateNote => updateNote.Title).NotEmpty().MaximumLength(250);
+            RuleFor(updateNote => updateNote.UserId).NotEqual(Guid.Empty);
+            RuleFor(updateNote => updateNote.Id).NotEqual(Guid.Empty);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Domain;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,6 +32,15 @@ namespace CleanArchitecture.Application.Notes.Commands
             await _notesDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
+        }
+    }
+
+    public class DeleteNoteCommandValidator : AbstractValidator<DeleteNoteCommand>
+    {
+        public DeleteNoteCommandValidator()
+        {
+            RuleFor(deleteNote => deleteNote.UserId).NotEqual(Guid.Empty);
+            RuleFor(deleteNote => deleteNote.Id).NotEqual(Guid.Empty);
         }
     }
 }

@@ -3,6 +3,7 @@ using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Interfaces;
 using CleanArchitecture.Application.ViewModels;
 using CleanArchitecture.Domain;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,6 +34,15 @@ namespace CleanArchitecture.Application.Notes.Queries
                 throw new NotFoundException(nameof(Note), request.Id);
 
             return _mapper.Map<NoteDetailsVm>(entity);
+        }
+    }
+
+    public class GetNoteDetailsQueryValidator : AbstractValidator<GetNoteDetailsQuery>
+    {
+        public GetNoteDetailsQueryValidator()
+        {
+            RuleFor(noteDetails => noteDetails.UserId).NotEqual(Guid.Empty);
+            RuleFor(noteDetails => noteDetails.Id).NotEqual(Guid.Empty);
         }
     }
 }

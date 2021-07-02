@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Notes.Commands
 {
-    class CreateNoteCommand : IRequest<Guid>
+    public class CreateNoteCommand : IRequest<Guid>
     {
         public Guid UserId { get; set; }
         public string Title { get; set; }
         public string Details { get; set; }
     }
 
-    class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
+    public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
     {
         private INotesDbContext _notesDbContext;
         public CreateNoteCommandHandler(INotesDbContext notesDbContext) =>

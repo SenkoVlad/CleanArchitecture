@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace CleanArchitecture.Application.Common.Mappings
 {
-    class AssemblyMappingProfile : Profile
+    public class AssemblyMappingProfile : Profile
     {
         public AssemblyMappingProfile(Assembly assembly) =>
             ApplyMappingsFromAssembly(assembly);

@@ -3,7 +3,7 @@ using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Domain;
 using System;
 
-namespace CleanArchitecture.Application.Notes.Queries
+namespace CleanArchitecture.Application.ViewModels
 {
     public class NoteDetailsVm : IMapWith<Note>
     {

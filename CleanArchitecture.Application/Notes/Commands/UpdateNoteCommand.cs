@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Notes.Commands
 {
-    class UpdateNoteCommand : IRequest
+    public class UpdateNoteCommand : IRequest
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
@@ -17,7 +17,7 @@ namespace CleanArchitecture.Application.Notes.Commands
         public string Details { get; set; }
     }
 
-    class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand>
+    public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand>
     {
         private INotesDbContext _notesDbContext;
         public UpdateNoteCommandHandler(INotesDbContext notesDbContext) =>

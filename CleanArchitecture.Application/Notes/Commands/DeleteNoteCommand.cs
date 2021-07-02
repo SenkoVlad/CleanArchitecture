@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Notes.Commands
 {
-    class DeleteNoteCommand : IRequest
+    public class DeleteNoteCommand : IRequest
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
     }
 
-    class DeleteNoteCommandHandler : IRequestHandler<DeleteNoteCommand>
+    public class DeleteNoteCommandHandler : IRequestHandler<DeleteNoteCommand>
     {
         private INotesDbContext _notesDbContext;
         public DeleteNoteCommandHandler(INotesDbContext notesDbContext) =>

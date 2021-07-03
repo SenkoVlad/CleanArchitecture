@@ -34,9 +34,9 @@ namespace CleanArchitecture.WebApi
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options =>
+                .AddJwtBearer("Bearer" ,options =>
                 {
-                    options.Authority = "https://localhost:8001";
+                    options.Authority = "https://localhost:8001/";
                     options.Audience = "NotesWebApi";
                     options.RequireHttpsMetadata = false;
                 });

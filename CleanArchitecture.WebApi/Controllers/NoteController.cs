@@ -17,8 +17,8 @@ namespace CleanArchitecture.WebApi.Controllers
         public NoteController(IMapper mapper) =>
             _mapper = mapper;
 
-        [HttpGet]
         [Authorize]
+        [HttpGet]
         public async Task<ActionResult<NoteListVm>> GetAll()
         {
             var query = new GetNotesListQuery
@@ -29,8 +29,8 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(vm);
         }
         
-        [HttpGet("{id}")]
         [Authorize]
+        [HttpGet("{id}")]
         public async Task<ActionResult<NoteDetailsVm>> Get(Guid id)
         {
             var query = new GetNoteDetailsQuery
@@ -42,8 +42,8 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(vm);
         }
 
-        [HttpPost]
         [Authorize]
+        [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateNoteDto createNoteDto)
         {
             var command = _mapper.Map<CreateNoteCommand>(createNoteDto);
@@ -52,8 +52,8 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(noteId);
         }
 
-        [HttpPut]
         [Authorize]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateNoteDto updateNoteDto)
         {
             var command = _mapper.Map<UpdateNoteCommand>(updateNoteDto);
@@ -62,8 +62,8 @@ namespace CleanArchitecture.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
         [Authorize]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteNoteCommand

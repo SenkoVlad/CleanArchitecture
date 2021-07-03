@@ -2,12 +2,13 @@ using CleanArchitecture.Identity.Data;
 using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace CleanArchitecture.Identity
 {
@@ -50,6 +51,8 @@ namespace CleanArchitecture.Identity
                     .AddInMemoryClients(Configuration.Clients)
                     .AddInMemoryApiScopes(Configuration.ApiScopes)
                     .AddDeveloperSigningCredential();
+
+            services.AddControllersWithViews();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -57,16 +60,19 @@ namespace CleanArchitecture.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Styles")),
+                RequestPath = "/Styles"
+            });
+            
 
             app.UseRouting();
             app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

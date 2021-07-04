@@ -3,6 +3,7 @@ using CleanArchitecture.Application.Notes.Commands;
 using CleanArchitecture.Application.Notes.Queries;
 using CleanArchitecture.Application.ViewModels;
 using CleanArchitecture.WebApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace CleanArchitecture.WebApi.Controllers
         public NoteController(IMapper mapper) =>
             _mapper = mapper;
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<NoteListVm>> GetAll()
         {
@@ -27,6 +29,7 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(vm);
         }
         
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<NoteDetailsVm>> Get(Guid id)
         {
@@ -39,6 +42,7 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(vm);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateNoteDto createNoteDto)
         {
@@ -48,6 +52,7 @@ namespace CleanArchitecture.WebApi.Controllers
             return Ok(noteId);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateNoteDto updateNoteDto)
         {
@@ -57,6 +62,7 @@ namespace CleanArchitecture.WebApi.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

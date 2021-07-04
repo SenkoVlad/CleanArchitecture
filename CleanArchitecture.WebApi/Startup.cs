@@ -9,6 +9,7 @@ using CleanArchitecture.Application;
 using CleanArchitecture.Persistence;
 using Microsoft.Extensions.Configuration;
 using CleanArchitecture.WebApi.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace CleanArchitecture.WebApi
 {
@@ -27,6 +28,18 @@ namespace CleanArchitecture.WebApi
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddControllers();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer("Bearer" ,options =>
+                {
+                    options.Authority = "https://localhost:8001/";
+                    options.Audience = "NotesWebApi";
+                    options.RequireHttpsMetadata = false;
+                });
 
             services.AddCors(options =>
             {
@@ -50,7 +63,8 @@ namespace CleanArchitecture.WebApi
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

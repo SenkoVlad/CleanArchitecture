@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.WebApi", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{00DCFAAA-DBE6-412D-8C38-1E89E90EF93E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Identity", "CleanArchitecture.Identity\CleanArchitecture.Identity.csproj", "{C2C59D85-2B14-45F0-A08C-8487066FF65D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Identity", "CleanArchitecture.Identity\CleanArchitecture.Identity.csproj", "{C2C59D85-2B14-45F0-A08C-8487066FF65D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Tests", "CleanArchitecture.Tests\CleanArchitecture.Tests.csproj", "{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{C2C59D85-2B14-45F0-A08C-8487066FF65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2C59D85-2B14-45F0-A08C-8487066FF65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2C59D85-2B14-45F0-A08C-8487066FF65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{AE8FB73B-767F-4D1E-9788-4DEB4E86686B} = {5D87C456-256A-45F9-98DF-C7EBAE63BE1A}
 		{AC9F6313-2F57-4C8B-B203-2C9989C182A1} = {1CD5457C-EE13-4D2A-92F1-66C6C2B51F44}
 		{C2C59D85-2B14-45F0-A08C-8487066FF65D} = {00DCFAAA-DBE6-412D-8C38-1E89E90EF93E}
+		{7B9E94B2-5BD7-4C50-9110-F2DC5034BF6B} = {BD2CEC08-3804-4930-B281-32496B6DD0EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D85AE7C-F00B-4809-850B-1424E4B626C5}

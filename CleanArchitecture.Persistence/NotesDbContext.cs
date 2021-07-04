@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Persistence
 {
-    public class NotedDbContext : DbContext, INotesDbContext
+    public class NotesDbContext : DbContext, INotesDbContext
     {
         public DbSet<Note> Notes { get; set; }
-        public NotedDbContext(DbContextOptions<NotedDbContext> options) : base(options) { }
+        public NotesDbContext(DbContextOptions<NotesDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

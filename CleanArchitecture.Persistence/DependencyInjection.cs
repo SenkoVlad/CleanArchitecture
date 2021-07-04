@@ -10,10 +10,10 @@ namespace CleanArchitecture.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration["DbConnection"];
-            services.AddDbContext<NotedDbContext>(options =>
+            services.AddDbContext<NotesDbContext>(options =>
                     options.UseSqlite(connectionString));
             services.AddScoped<INotesDbContext>(provider =>
-                    provider.GetService<NotedDbContext>());
+                    provider.GetService<NotesDbContext>());
 
             return services;
         }

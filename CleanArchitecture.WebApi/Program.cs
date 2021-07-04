@@ -17,7 +17,7 @@ namespace CleanArchitecture.WebApi
                 var serviceProvider = scope.ServiceProvider;
                 try
                 {
-                    var context = serviceProvider.GetRequiredService<NotedDbContext>();
+                    var context = serviceProvider.GetRequiredService<NotesDbContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception exception)

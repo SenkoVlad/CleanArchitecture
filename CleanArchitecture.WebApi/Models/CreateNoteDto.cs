@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Application.Notes.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace CleanArchitecture.WebApi.Models
 {
     public class CreateNoteDto : IMapWith<CreateNoteCommand>
     {
+        [Required]
         public string Title { get; set; }
         public string Details { get; set; }
         public void Mapping(Profile profile)

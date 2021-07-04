@@ -2,9 +2,6 @@
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Application.Notes.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.Models
 {

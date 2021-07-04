@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CleanArchitecture.Tests.Notes.Commands
+namespace CleanArchitecture.Tests.Notes.Q
 {
     [Collection("QueryCollection")]
     public class GetNoteDetailsQueryHandlerTest

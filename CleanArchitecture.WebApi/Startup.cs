@@ -10,6 +10,8 @@ using CleanArchitecture.Persistence;
 using Microsoft.Extensions.Configuration;
 using CleanArchitecture.WebApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IO;
+using System;
 
 namespace CleanArchitecture.WebApi
 {
@@ -50,6 +52,12 @@ namespace CleanArchitecture.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+            services.AddSwaggerGen(config =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -58,6 +66,13 @@ namespace CleanArchitecture.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "notes api");
+            });
+
             app.UseCustomExceptionHandler();
 
             app.UseRouting();

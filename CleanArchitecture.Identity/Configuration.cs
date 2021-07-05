@@ -32,13 +32,14 @@ namespace CleanArchitecture.Identity
             {
                 new Client
                 {
-                    ClientId = "notes-web-api",
+                    ClientId = "notes-web-app",
                     ClientName = "Notes Web",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
                     RequirePkce = true,
-                    RedirectUris = {"https://.../signin-oidc" },
-                    AllowedCorsOrigins = {"https://..."},
+                    RedirectUris = {"http://localhost:3000/signin-oidc" },
+                    AllowedCorsOrigins = {"http://localhost:3000"},
+                    PostLogoutRedirectUris = { "http://localhost:3000" },
                     AllowedScopes = 
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

@@ -44,7 +44,7 @@ namespace CleanArchitecture.Identity.Controllers
             var loginResult = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
             
             if(loginResult.Succeeded)
-                Redirect(loginViewModel.ReturnUrl);
+                return Redirect(loginViewModel.ReturnUrl);
 
             ModelState.AddModelError(string.Empty, "Login error");
             return View(loginViewModel);

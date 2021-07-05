@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.Controllers
 {
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class NoteController : BaseController

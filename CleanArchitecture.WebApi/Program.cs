@@ -2,6 +2,7 @@ using CleanArchitecture.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using System;
 
 namespace CleanArchitecture.WebApi
@@ -10,6 +11,11 @@ namespace CleanArchitecture.WebApi
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Information)
+                .WriteTo.File("NotesWebAppLog-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             var host = CreateHostBuilder(args).Build();
 
             using(var scope = host.Services.CreateScope())
@@ -22,6 +28,7 @@ namespace CleanArchitecture.WebApi
                 }
                 catch (Exception exception)
                 {
+                    Log.Fatal(exception, "An fatal error while app initialization");
                 }
             }
 

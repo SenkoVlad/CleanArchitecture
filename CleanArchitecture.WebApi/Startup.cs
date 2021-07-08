@@ -10,11 +10,10 @@ using CleanArchitecture.Persistence;
 using Microsoft.Extensions.Configuration;
 using CleanArchitecture.WebApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.IO;
-using System;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using CleanArchitecture.WebApi.Services;
 
 namespace CleanArchitecture.WebApi
 {
@@ -60,6 +59,9 @@ namespace CleanArchitecture.WebApi
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen();
             services.AddApiVersioning();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionProvider)

@@ -1,0 +1,2 @@
+2021-07-08 16:39:08.987 +03:00 [INF] Notes Request: GetNotesListQuery "8df339d8-6df9-4f59-8f6c-802dd5f2aaf0" {"UserId":"81e9136e-4a37-446f-b52c-729d71a1cc5a","$type":"GetNotesListQuery"}
+2021-07-08 16:39:08.996 +03:00 [INF] Notes Request: CreateNoteCommand "cfe1b0ba-3d1a-4bc6-a2b5-f97f77e25533" {"UserId":"81e9136e-4a37-446f-b52c-729d71a1cc5a","Title":"behethte","Details":null,"$type":"CreateNoteCommand"}
